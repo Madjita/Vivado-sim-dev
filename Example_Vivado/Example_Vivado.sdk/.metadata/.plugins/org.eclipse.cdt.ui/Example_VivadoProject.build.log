@@ -1,6 +1,0 @@
-09:00:36 **** Incremental Build of configuration Debug for project Example_VivadoProject ****
-make all 
-make: Цель `all' не требует выполнения команд.
-
-09:00:36 Build Finished (took 140ms)
-
