@@ -1,0 +1,10 @@
+#-----------------------------------------------------------
+# Vivado v2015.2 (64-bit)
+# SW Build 1266856 on Fri Jun 26 16:35:25 MDT 2015
+# IP Build 1264090 on Wed Jun 24 14:22:01 MDT 2015
+# Start of session at: Wed Jul 20 16:07:14 2016
+# Process ID: 5800
+# Log file: D:/Matlab_Vhd/smartCart/OTLADKA/ipcore/head_ip_v1_0/prj_ip/vivado.log
+# Journal file: D:/Matlab_Vhd/smartCart/OTLADKA/ipcore/head_ip_v1_0/prj_ip\vivado.jou
+#-----------------------------------------------------------
+source vivado_ip_package.tcl

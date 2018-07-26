@@ -1,0 +1,12 @@
+verilog xil_defaultlib --include "../../../../ad9142.srcs/sources_1/bd/dac_design/ipshared/ec67/hdl" --include "../../../../ad9142.srcs/sources_1/bd/dac_design/ipshared/02c8/hdl/verilog" --include "../../../../ad9142.srcs/sources_1/bd/dac_design/ipshared/b193/hdl" --include "../../../../ad9142.srcs/sources_1/bd/dac_design/ipshared/4903" --include "../../../../ad9142.srcs/sources_1/bd/dac_design/ipshared/6180/hdl/verilog" --include "../../../../ad9142.srcs/sources_1/bd/dac_design/ipshared/a08d/hdl/verilog" --include "../../../../ad9142.srcs/sources_1/bd/dac_design/ipshared/2875/hdl/verilog" --include "../../../../ad9142.srcs/sources_1/bd/dac_design/ipshared/2c14/hdl/verilog" \
+"../../../bd/dac_design/ip/dac_design_processing_system7_0_0/sim/dac_design_processing_system7_0_0.v" \
+"../../../bd/dac_design/ip/dac_design_clk_wiz_0_0/dac_design_clk_wiz_0_0_clk_wiz.v" \
+"../../../bd/dac_design/ip/dac_design_clk_wiz_0_0/dac_design_clk_wiz_0_0.v" \
+"../../../bd/dac_design/ip/dac_design_xlconstant_0_0/sim/dac_design_xlconstant_0_0.v" \
+"../../../bd/dac_design/ip/dac_design_xlconstant_1_0/sim/dac_design_xlconstant_1_0.v" \
+"../../../bd/dac_design/ip/dac_design_xlconstant_2_0/sim/dac_design_xlconstant_2_0.v" \
+"../../../bd/dac_design/ip/dac_design_auto_pc_0/sim/dac_design_auto_pc_0.v" \
+
+verilog xil_defaultlib "glbl.v"
+
+nosort

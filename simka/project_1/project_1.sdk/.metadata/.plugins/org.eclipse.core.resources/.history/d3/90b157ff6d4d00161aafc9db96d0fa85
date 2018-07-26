@@ -1,0 +1,23 @@
+/*
+ * type_data.h
+ *
+ *  Created on: 19 июля 2016 г.
+ *      Author: Admin
+ */
+
+#ifndef TYPE_DATA_H_
+#define TYPE_DATA_H_
+
+typedef struct comand
+{
+	unsigned start;
+	unsigned stop;
+	unsigned rd_wr;
+	unsigned step;
+	unsigned rst_irq;
+	unsigned number_wr_byte;
+	unsigned on_transmite;
+	unsigned comanda;
+};
+
+#endif /* TYPE_DATA_H_ */

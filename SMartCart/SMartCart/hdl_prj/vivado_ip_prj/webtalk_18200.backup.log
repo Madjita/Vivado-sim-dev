@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Webtalk v2015.4 (64-bit)
+# SW Build 1412921 on Wed Nov 18 09:43:45 MST 2015
+# IP Build 1412160 on Tue Nov 17 13:47:24 MST 2015
+# Start of session at: Fri Nov 17 15:14:48 2017
+# Process ID: 18200
+# Current directory: D:/SMartCart/SMartCart/hdl_prj/vivado_ip_prj
+# Command line: wbtcv.exe -mode batch -source d:/smartcart/smartcart/hdl_prj/vivado_ip_prj/vivado_prj.tmp/switch_io_v1_0_project/switch_IO_v1_0_project.hw/webtalk/labtool_webtalk.tcl -notrace
+# Log file: D:/SMartCart/SMartCart/hdl_prj/vivado_ip_prj/webtalk.log
+# Journal file: D:/SMartCart/SMartCart/hdl_prj/vivado_ip_prj\webtalk.jou
+#-----------------------------------------------------------
+source d:/smartcart/smartcart/hdl_prj/vivado_ip_prj/vivado_prj.tmp/switch_io_v1_0_project/switch_IO_v1_0_project.hw/webtalk/labtool_webtalk.tcl -notrace
+INFO: [Common 17-206] Exiting Webtalk at Fri Nov 17 15:14:49 2017...

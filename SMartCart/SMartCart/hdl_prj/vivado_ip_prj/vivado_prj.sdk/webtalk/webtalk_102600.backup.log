@@ -1,0 +1,15 @@
+#-----------------------------------------------------------
+# Webtalk v2015.4 (64-bit)
+# SW Build 1412921 on Wed Nov 18 09:43:45 MST 2015
+# 
+# Start of session at: Thu Nov 02 18:15:02 2017
+# Process ID: 102600
+# Current directory: D:/SMartCart/SMartCart/hdl_prj/vivado_ip_prj/vivado_prj.sdk/webtalk
+# Command line: wbtcv.exe -mode batch -source sdk_webtalk.tcl
+# Log file: D:/SMartCart/SMartCart/hdl_prj/vivado_ip_prj/vivado_prj.sdk/webtalk/webtalk.log
+# Journal file: D:/SMartCart/SMartCart/hdl_prj/vivado_ip_prj/vivado_prj.sdk/webtalk\webtalk.jou
+#-----------------------------------------------------------
+source sdk_webtalk.tcl
+# webtalk_init -webtalk_dir D:\\SMartCart\\SMartCart\\hdl_prj\\vivado_ip_prj\\vivado_prj.sdk\\webtalk
+# webtalk_register_client -client project
+# webtalk_add_data -client project -key date_generated -value "Чт ноя 2 18:14:56 2017" -context "software_version_and_target_device"

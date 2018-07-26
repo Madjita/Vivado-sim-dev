@@ -1,0 +1,112 @@
+09:44:44 **** Auto Build of configuration Debug for project smartcart ****
+make all 
+'Building file: ../src/smartCard.c'
+'Invoking: ARM gcc compiler'
+arm-xilinx-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/smartCard.o" -I../../smartcart_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/smartCard.d" -MT"src/smartCard.d" -o "src/smartCard.o" "../src/smartCard.c"
+In file included from ../src/smartCard.c:8:0:
+../src/smartCard.h:31:9: warning: type defaults to 'int' in declaration of 'ProgSmartCart' [-Wimplicit-int]
+ typedef ProgSmartCart;
+         ^
+../src/smartCard.h:32:9: warning: type defaults to 'int' in declaration of 'ProgSmartCart_1' [-Wimplicit-int]
+ typedef ProgSmartCart_1;
+         ^
+../src/smartCard.h:33:9: warning: type defaults to 'int' in declaration of 'ProgSmartCart_2' [-Wimplicit-int]
+ typedef ProgSmartCart_2;
+         ^
+../src/smartCard.c: In function 'save_div_key':
+../src/smartCard.c:115:17: warning: unused variable 'i' [-Wunused-variable]
+   int somo_test,i;
+                 ^
+../src/smartCard.c: In function 'internal_auth':
+../src/smartCard.c:733:2: warning: return makes pointer from integer without a cast
+  return somo_test;
+  ^
+../src/smartCard.c: In function 'activate':
+../src/smartCard.c:1070:16: warning: unused variable 'i' [-Wunused-variable]
+  int somo_test,i;
+                ^
+../src/smartCard.c: In function 'delete':
+../src/smartCard.c:1097:16: warning: unused variable 'i' [-Wunused-variable]
+  int somo_test,i;
+                ^
+../src/smartCard.c: In function 'select':
+../src/smartCard.c:1150:16: warning: unused variable 'i' [-Wunused-variable]
+  int somo_test,i;
+                ^
+../src/smartCard.c: In function 'get_session_key':
+../src/smartCard.c:1794:4: warning: return makes pointer from integer without a cast
+    return *byt;
+    ^
+../src/smartCard.c:1718:6: warning: variable 'somo_test' set but not used [-Wunused-but-set-variable]
+  int somo_test;
+      ^
+../src/smartCard.c: In function 'get_challenge':
+../src/smartCard.c:1835:7: warning: return makes pointer from integer without a cast
+       return *byt2;
+       ^
+../src/smartCard.c:1860:7: warning: return makes pointer from integer without a cast
+       return *byt2;
+       ^
+../src/smartCard.c:1801:6: warning: variable 'somo_test' set but not used [-Wunused-but-set-variable]
+  int somo_test;
+      ^
+../src/smartCard.c: In function 'check_rom':
+../src/smartCard.c:1896:6: warning: unused variable 'somo_test' [-Wunused-variable]
+  int somo_test;
+      ^
+../src/smartCard.c: In function 'get_response':
+../src/smartCard.c:2250:6: warning: unused variable 'somo_test' [-Wunused-variable]
+  int somo_test;
+      ^
+../src/smartCard.c: In function 'SetSmartCart':
+../src/smartCard.c:2672:16: warning: passing argument 1 of 'invert_byte' from incompatible pointer type
+    invert_byte(&cinterfacesmartcard.reciver_buffer[cinterfacesmartcard.index_rec_buff]);
+                ^
+In file included from ../src/smartCard.h:21:0,
+                 from ../src/smartCard.c:8:
+../src/type_data.h:68:6: note: expected 'int *' but argument is of type 'char *'
+ void invert_byte(int *a);
+      ^
+../src/smartCard.c:2665:11: warning: unused variable 'ccomanda' [-Wunused-variable]
+  Ccomanda ccomanda;
+           ^
+../src/smartCard.c: In function 'SetSmartCart_1':
+../src/smartCard.c:2705:16: warning: passing argument 1 of 'invert_byte' from incompatible pointer type
+    invert_byte(&cinterfacesmartcard.reciver_buffer[cinterfacesmartcard.index_rec_buff]);
+                ^
+In file included from ../src/smartCard.h:21:0,
+                 from ../src/smartCard.c:8:
+../src/type_data.h:68:6: note: expected 'int *' but argument is of type 'char *'
+ void invert_byte(int *a);
+      ^
+../src/smartCard.c:2698:11: warning: unused variable 'ccomanda' [-Wunused-variable]
+  Ccomanda ccomanda;
+           ^
+../src/smartCard.c: In function 'DetectSmartCart':
+../src/smartCard.c:2969:6: warning: variable 'status' set but not used [-Wunused-but-set-variable]
+  int status;
+      ^
+../src/smartCard.c: In function 'read_serial_number':
+../src/smartCard.c:100:8: warning: 'byt' is used uninitialized in this function [-Wuninitialized]
+  byt[0]=cinterfacesmartcard.reciver_buffer[1];
+        ^
+../src/smartCard.c: In function 'get_response':
+../src/smartCard.c:2263:8: warning: 'byt' is used uninitialized in this function [-Wuninitialized]
+  byt[0]=cinterfacesmartcard.reciver_buffer[1]; //
+        ^
+'Finished building: ../src/smartCard.c'
+' '
+'Building target: smartcart.elf'
+'Invoking: ARM gcc linker'
+arm-xilinx-eabi-gcc -Wl,-T -Wl,../src/lscript.ld -L../../smartcart_bsp/ps7_cortexa9_0/lib -o "smartcart.elf"  ./src/helloworld.o ./src/platform.o ./src/smartCard.o ./src/type_data.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: smartcart.elf'
+' '
+'Invoking: ARM Print Size'
+arm-xilinx-eabi-size smartcart.elf  |tee "smartcart.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  99252	   3104	  25756	 128112	  1f470	smartcart.elf
+'Finished building: smartcart.elf.size'
+' '
+
+09:44:45 Build Finished (took 739ms)
+

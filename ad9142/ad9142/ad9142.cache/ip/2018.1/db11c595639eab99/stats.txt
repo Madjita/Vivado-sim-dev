@@ -1,0 +1,3 @@
+NumberHits:1
+Timestamp: Mon Jul 02 06:46:55 UTC 2018
+VLNV: rs.local:user:handmadedds:1.0

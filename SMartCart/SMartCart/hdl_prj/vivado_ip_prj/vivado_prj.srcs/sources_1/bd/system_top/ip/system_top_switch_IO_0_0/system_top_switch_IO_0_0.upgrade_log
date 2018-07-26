@@ -1,0 +1,390 @@
+Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2015.4 (win64) Build 1412921 Wed Nov 18 09:43:45 MST 2015
+| Date         : Fri Nov 17 15:14:59 2017
+| Host         : all running 64-bit major release  (build 9200)
+| Command      : upgrade_ip
+| Device       : xc7z020clg484-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'system_top_switch_IO_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the update of system_top_switch_IO_0_0 (xilinx.com:user:switch_IO:1.0 (Rev. 13)) to current project options.
+
+
+
+
+
+
+Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2015.4 (win64) Build 1412921 Wed Nov 18 09:43:45 MST 2015
+| Date         : Thu Nov 16 13:57:14 2017
+| Host         : all running 64-bit major release  (build 9200)
+| Command      : upgrade_ip
+| Device       : xc7z020clg484-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'system_top_switch_IO_0_0'
+
+1. Summary
+----------
+
+CAUTION (success, with warnings) in the upgrade of system_top_switch_IO_0_0 (xilinx.com:user:switch_IO:1.0) from (Rev. 14) to (Rev. 13)
+
+After upgrade, an IP may have parameter and port differences compared to the original customization. Please review the parameters within the IP customization GUI to ensure proper functionality. Also, please review the updated IP instantiation template to ensure proper connectivity, and update your design if required.
+
+2. Connection Warnings
+----------------------
+
+Detected external port differences while upgrading IP 'system_top_switch_IO_0_0'. These changes may impact your design.
+
+
+-upgrade has removed port 'DATA_IN'
+-upgrade has removed port 'DATA_OUT'
+-upgrade has removed port 'DETECT'
+-upgrade has removed port 'IO'
+-upgrade has removed port 'IRQ_DETECT'
+-upgrade has removed port 'SWITCH_SIG'
+-upgrade has removed port 'SWITCH_SIG_1'
+-upgrade has added port 'DATA_IN_SIM1'
+-upgrade has added port 'DATA_IN_SIM2'
+-upgrade has added port 'DATA_OUT_SIM1'
+-upgrade has added port 'DATA_OUT_SIM2'
+-upgrade has added port 'IO_SIM1'
+-upgrade has added port 'IO_SIM2'
+-upgrade has added port 'SIGNAL_IN_SIM1'
+-upgrade has added port 'SIGNAL_IN_SIM2'
+-upgrade has added port 'SIGNAL_OUT_SIM1'
+-upgrade has added port 'SIGNAL_OUT_SIM2'
+-upgrade has added port 'SWITCH_SIG_SIM1'
+-upgrade has added port 'SWITCH_SIG_SIM2'
+
+
+
+
+
+
+Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2015.4 (win64) Build 1412921 Wed Nov 18 09:43:45 MST 2015
+| Date         : Wed Nov 15 15:53:54 2017
+| Host         : all running 64-bit major release  (build 9200)
+| Command      : upgrade_ip
+| Device       : xc7z020clg484-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'system_top_switch_IO_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the upgrade of system_top_switch_IO_0_0 (xilinx.com:user:switch_IO:1.0) from (Rev. 13) to (Rev. 14)
+
+
+
+
+
+
+Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2015.4 (win64) Build 1412921 Wed Nov 18 09:43:45 MST 2015
+| Date         : Wed Nov 15 14:44:43 2017
+| Host         : all running 64-bit major release  (build 9200)
+| Command      : upgrade_ip
+| Device       : xc7z020clg484-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'system_top_switch_IO_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the update of system_top_switch_IO_0_0 (xilinx.com:user:switch_IO:1.0 (Rev. 13)) to current project options.
+
+
+
+
+
+
+Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2015.4 (win64) Build 1412921 Wed Nov 18 09:43:45 MST 2015
+| Date         : Thu Nov 02 08:28:19 2017
+| Host         : Eduard-rs4320 running 64-bit Service Pack 1  (build 7601)
+| Command      : upgrade_ip
+| Device       : xc7z020clg484-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'system_top_switch_IO_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the upgrade of system_top_switch_IO_0_0 (xilinx.com:user:switch_IO:1.0) from (Rev. 12) to (Rev. 13)
+
+
+
+
+
+
+Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2015.4 (win64) Build 1412921 Wed Nov 18 09:43:45 MST 2015
+| Date         : Wed Nov 09 04:19:38 2016
+| Host         : מעה4230 running 64-bit major release  (build 9200)
+| Command      : upgrade_ip
+| Device       : xc7z020clg484-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'system_top_switch_IO_0_0'
+
+1. Summary
+----------
+
+CAUTION (success, with warnings) in the upgrade of system_top_switch_IO_0_0 (xilinx.com:user:switch_IO:1.0) from (Rev. 9) to (Rev. 12)
+
+After upgrade, an IP may have parameter and port differences compared to the original customization. Please review the parameters within the IP customization GUI to ensure proper functionality. Also, please review the updated IP instantiation template to ensure proper connectivity, and update your design if required.
+
+2. Connection Warnings
+----------------------
+
+Detected external port differences while upgrading IP 'system_top_switch_IO_0_0'. These changes may impact your design.
+
+
+-upgrade has added port 'SWITCH_SIG_1'
+
+
+
+
+
+
+Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2015.4 (win64) Build 1412921 Wed Nov 18 09:43:45 MST 2015
+| Date         : Tue Nov 08 06:00:53 2016
+| Host         : מעה4230 running 64-bit major release  (build 9200)
+| Command      : upgrade_ip
+| Device       : xc7z020clg484-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'system_top_switch_IO_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the upgrade of system_top_switch_IO_0_0 (xilinx.com:user:switch_IO:1.0) from (Rev. 4) to (Rev. 9)
+
+
+
+
+
+
+Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2015.4 (win64) Build 1412921 Wed Nov 18 09:43:45 MST 2015
+| Date         : Tue Nov 08 05:21:52 2016
+| Host         : מעה4230 running 64-bit major release  (build 9200)
+| Command      : upgrade_ip
+| Device       : xc7z020clg484-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'system_top_switch_IO_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the upgrade of system_top_switch_IO_0_0 (xilinx.com:user:switch_IO:1.0) from (Rev. 3) to (Rev. 4)
+
+
+
+
+
+
+Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2015.4 (win64) Build 1412921 Wed Nov 18 09:43:45 MST 2015
+| Date         : Tue Sep 13 08:02:46 2016
+| Host         : מעה4230 running 64-bit major release  (build 9200)
+| Command      : upgrade_ip
+| Device       : xc7z020clg484-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'system_top_switch_IO_0_0'
+
+1. Summary
+----------
+
+CAUTION (success, with warnings) in the upgrade of system_top_switch_IO_0_0 (xilinx.com:user:switch_IO:1.0) from (Rev. 1) to (Rev. 3)
+
+After upgrade, an IP may have parameter and port differences compared to the original customization. Please review the parameters within the IP customization GUI to ensure proper functionality. Also, please review the updated IP instantiation template to ensure proper connectivity, and update your design if required.
+
+2. Connection Warnings
+----------------------
+
+Detected external port differences while upgrading IP 'system_top_switch_IO_0_0'. These changes may impact your design.
+
+
+-upgrade has added port 'DETECT'
+-upgrade has added port 'IRQ_DETECT'
+
+
+
+
+
+
+Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2015.2 (win64) Build 1266856 Fri Jun 26 16:35:25 MDT 2015
+| Date         : Tue Jul 26 11:17:01 2016
+| Host         : Eduard-rs4320 running 64-bit Service Pack 1  (build 7601)
+| Command      : upgrade_ip
+| Device       : xc7z020clg484-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'system_top_switch_IO_0_0'
+
+1. Summary
+----------
+
+CAUTION (success, with warnings) in the update of system_top_switch_IO_0_0 (xilinx.com:user:switch_IO:1.0 (Rev. 1)) to current project options.
+
+After upgrade, an IP may have parameter and port differences compared to the original customization. Please review the parameters within the IP customization GUI to ensure proper functionality. Also, please review the updated IP instantiation template to ensure proper connectivity, and update your design if required.
+
+2. Connection Warnings
+----------------------
+
+Detected external port differences while upgrading IP 'system_top_switch_IO_0_0'. These changes may impact your design.
+
+
+-upgrade has added port 'DIR'
+
+
+
+
+
+
+Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2015.2 (win64) Build 1266856 Fri Jun 26 16:35:25 MDT 2015
+| Date         : Tue Jul 26 08:19:16 2016
+| Host         : Eduard-rs4320 running 64-bit Service Pack 1  (build 7601)
+| Command      : upgrade_ip
+| Device       : xc7z020clg484-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'system_top_switch_IO_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the update of system_top_switch_IO_0_0 (xilinx.com:user:switch_IO:1.0 (Rev. 1)) to current project options.
+
+
+
+
+
+
+Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2015.2 (win64) Build 1266856 Fri Jun 26 16:35:25 MDT 2015
+| Date         : Mon Jul 25 16:14:05 2016
+| Host         : Eduard-rs4320 running 64-bit Service Pack 1  (build 7601)
+| Command      : upgrade_ip
+| Device       : xc7z020clg484-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'system_top_switch_IO_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the update of system_top_switch_IO_0_0 (xilinx.com:user:switch_IO:1.0 (Rev. 1)) to current project options.
+
+
+
+
+
+
+Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2015.2 (win64) Build 1266856 Fri Jun 26 16:35:25 MDT 2015
+| Date         : Mon Jul 25 15:49:21 2016
+| Host         : Eduard-rs4320 running 64-bit Service Pack 1  (build 7601)
+| Command      : upgrade_ip
+| Device       : xc7z020clg484-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'system_top_switch_IO_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the update of system_top_switch_IO_0_0 (xilinx.com:user:switch_IO:1.0 (Rev. 1)) to current project options.
+
+
+
+
+
+
+Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2015.2 (win64) Build 1266856 Fri Jun 26 16:35:25 MDT 2015
+| Date         : Mon Jul 25 14:35:36 2016
+| Host         : Eduard-rs4320 running 64-bit Service Pack 1  (build 7601)
+| Command      : upgrade_ip
+| Device       : xc7z020clg484-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'system_top_switch_IO_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the update of system_top_switch_IO_0_0 (xilinx.com:user:switch_IO:1.0 (Rev. 1)) to current project options.
+
+
+
+
+
+
+Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2015.2 (win64) Build 1266856 Fri Jun 26 16:35:25 MDT 2015
+| Date         : Tue Jul 19 08:10:08 2016
+| Host         : Eduard-rs4320 running 64-bit Service Pack 1  (build 7601)
+| Command      : upgrade_ip
+| Device       : xc7z020clg484-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'system_top_switch_IO_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the update of system_top_switch_IO_0_0 (xilinx.com:user:switch_IO:1.0 (Rev. 1)) to current project options.
+
+
+
+
+
+
+Copyright 1986-2015 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2015.2 (win64) Build 1266856 Fri Jun 26 16:35:25 MDT 2015
+| Date         : Tue Jul 19 07:58:52 2016
+| Host         : Eduard-rs4320 running 64-bit Service Pack 1  (build 7601)
+| Command      : upgrade_ip
+| Device       : xc7z020clg484-1
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'system_top_switch_IO_0_0'
+
+1. Summary
+----------
+
+SUCCESS in the update of system_top_switch_IO_0_0 (xilinx.com:user:switch_IO:1.0 (Rev. 1)) to current project options.
+

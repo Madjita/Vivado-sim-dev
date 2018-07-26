@@ -1,0 +1,67 @@
+#-----------------------------------------------------------
+# Vivado v2018.1 (64-bit)
+# SW Build 2188600 on Wed Apr  4 18:40:38 MDT 2018
+# IP Build 2185939 on Wed Apr  4 20:55:05 MDT 2018
+# Start of session at: Fri Jul 13 08:14:26 2018
+# Process ID: 10888
+# Current directory: D:/Work/vivadoProject/ad9142/ad9142
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent7876 D:\Work\vivadoProject\ad9142\ad9142\ad9142.xpr
+# Log file: D:/Work/vivadoProject/ad9142/ad9142/vivado.log
+# Journal file: D:/Work/vivadoProject/ad9142/ad9142\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project D:/Work/vivadoProject/ad9142/ad9142/ad9142.xpr
+launch_sdk -workspace D:/Work/vivadoProject/ad9142/ad9142/ad9142.sdk -hwspec D:/Work/vivadoProject/ad9142/ad9142/ad9142.sdk/dac_design_wrapper.hdf
+update_compile_order -fileset sources_1
+open_bd_design {D:/Work/vivadoProject/ad9142/ad9142/ad9142.srcs/sources_1/bd/dac_design/dac_design.bd}
+ipx::edit_ip_in_project -upgrade true -name handmadedds_v1_0_project -directory D:/Work/vivadoProject/ad9142/ad9142/ad9142.tmp/handmadedds_v1_0_project d:/Work/vivadoProject/ip_repo/handmadedds_1.0/component.xml
+update_compile_order -fileset sources_1
+ipx::merge_project_changes files [ipx::current_core]
+set_property core_revision 10 [ipx::current_core]
+ipx::update_source_project_archive -component [ipx::current_core]
+ipx::create_xgui_files [ipx::current_core]
+ipx::update_checksums [ipx::current_core]
+ipx::save_core [ipx::current_core]
+ipx::move_temp_component_back -component [ipx::current_core]
+close_project -delete
+update_ip_catalog -rebuild -repo_path d:/Work/vivadoProject/ip_repo
+report_ip_status -name ip_status 
+upgrade_ip -vlnv rs.local:user:handmadedds:1.0 [get_ips  dac_design_handmadedds_0_0] -log ip_upgrade.log
+export_ip_user_files -of_objects [get_ips dac_design_handmadedds_0_0] -no_script -sync -force -quiet
+generate_target all [get_files  D:/Work/vivadoProject/ad9142/ad9142/ad9142.srcs/sources_1/bd/dac_design/dac_design.bd]
+catch { config_ip_cache -export [get_ips -all dac_design_handmadedds_0_0] }
+catch { config_ip_cache -export [get_ips -all dac_design_auto_pc_0] }
+export_ip_user_files -of_objects [get_files D:/Work/vivadoProject/ad9142/ad9142/ad9142.srcs/sources_1/bd/dac_design/dac_design.bd] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] D:/Work/vivadoProject/ad9142/ad9142/ad9142.srcs/sources_1/bd/dac_design/dac_design.bd]
+launch_runs -jobs 2 dac_design_handmadedds_0_0_synth_1
+export_simulation -of_objects [get_files D:/Work/vivadoProject/ad9142/ad9142/ad9142.srcs/sources_1/bd/dac_design/dac_design.bd] -directory D:/Work/vivadoProject/ad9142/ad9142/ad9142.ip_user_files/sim_scripts -ip_user_files_dir D:/Work/vivadoProject/ad9142/ad9142/ad9142.ip_user_files -ipstatic_source_dir D:/Work/vivadoProject/ad9142/ad9142/ad9142.ip_user_files/ipstatic -lib_map_path [list {modelsim=D:/Work/vivadoProject/ad9142/ad9142/ad9142.cache/compile_simlib/modelsim} {questa=D:/Work/vivadoProject/ad9142/ad9142/ad9142.cache/compile_simlib/questa} {riviera=D:/Work/vivadoProject/ad9142/ad9142/ad9142.cache/compile_simlib/riviera} {activehdl=D:/Work/vivadoProject/ad9142/ad9142/ad9142.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+report_ip_status -name ip_status 
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 2
+wait_on_run impl_1
+file copy -force D:/Work/vivadoProject/ad9142/ad9142/ad9142.runs/impl_1/dac_design_wrapper.sysdef D:/Work/vivadoProject/ad9142/ad9142/ad9142.sdk/dac_design_wrapper.hdf
+
+file copy -force D:/Work/vivadoProject/ad9142/ad9142/ad9142.runs/impl_1/dac_design_wrapper.sysdef D:/Work/vivadoProject/ad9142/ad9142/ad9142.sdk/dac_design_wrapper.hdf
+
+launch_sdk -workspace D:/Work/vivadoProject/ad9142/ad9142/ad9142.sdk -hwspec D:/Work/vivadoProject/ad9142/ad9142/ad9142.sdk/dac_design_wrapper.hdf
+startgroup
+set_property -dict [list CONFIG.CLKOUT4_REQUESTED_OUT_FREQ {600.000} CONFIG.MMCM_DIVCLK_DIVIDE {1} CONFIG.MMCM_CLKFBOUT_MULT_F {12} CONFIG.MMCM_CLKOUT0_DIVIDE_F {8} CONFIG.MMCM_CLKOUT1_DIVIDE {8} CONFIG.MMCM_CLKOUT2_DIVIDE {16} CONFIG.MMCM_CLKOUT3_DIVIDE {2} CONFIG.CLKOUT1_JITTER {107.567} CONFIG.CLKOUT1_PHASE_ERROR {87.180} CONFIG.CLKOUT2_JITTER {107.567} CONFIG.CLKOUT2_PHASE_ERROR {87.180} CONFIG.CLKOUT3_JITTER {122.158} CONFIG.CLKOUT3_PHASE_ERROR {87.180} CONFIG.CLKOUT4_JITTER {83.768} CONFIG.CLKOUT4_PHASE_ERROR {87.180}] [get_bd_cells clk_wiz_0]
+endgroup
+save_bd_design
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 2
+wait_on_run impl_1
+file copy -force D:/Work/vivadoProject/ad9142/ad9142/ad9142.runs/impl_1/dac_design_wrapper.sysdef D:/Work/vivadoProject/ad9142/ad9142/ad9142.sdk/dac_design_wrapper.hdf
+
+file copy -force D:/Work/vivadoProject/ad9142/ad9142/ad9142.runs/impl_1/dac_design_wrapper.sysdef D:/Work/vivadoProject/ad9142/ad9142/ad9142.sdk/dac_design_wrapper.hdf
+
+startgroup
+set_property -dict [list CONFIG.CLKOUT4_REQUESTED_OUT_FREQ {300.000} CONFIG.MMCM_DIVCLK_DIVIDE {1} CONFIG.MMCM_CLKFBOUT_MULT_F {9} CONFIG.MMCM_CLKOUT0_DIVIDE_F {6} CONFIG.MMCM_CLKOUT1_DIVIDE {6} CONFIG.MMCM_CLKOUT2_DIVIDE {12} CONFIG.MMCM_CLKOUT3_DIVIDE {3} CONFIG.CLKOUT1_JITTER {127.220} CONFIG.CLKOUT1_PHASE_ERROR {105.461} CONFIG.CLKOUT2_JITTER {127.220} CONFIG.CLKOUT2_PHASE_ERROR {105.461} CONFIG.CLKOUT3_JITTER {146.170} CONFIG.CLKOUT3_PHASE_ERROR {105.461} CONFIG.CLKOUT4_JITTER {111.879} CONFIG.CLKOUT4_PHASE_ERROR {105.461}] [get_bd_cells clk_wiz_0]
+endgroup
+save_bd_design
+reset_run synth_1
+reset_run dac_design_clk_wiz_0_0_synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 2
+wait_on_run impl_1
+file copy -force D:/Work/vivadoProject/ad9142/ad9142/ad9142.runs/impl_1/dac_design_wrapper.sysdef D:/Work/vivadoProject/ad9142/ad9142/ad9142.sdk/dac_design_wrapper.hdf
+

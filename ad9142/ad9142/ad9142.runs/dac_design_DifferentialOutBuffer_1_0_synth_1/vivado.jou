@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2018.1 (64-bit)
+# SW Build 2188600 on Wed Apr  4 18:40:38 MDT 2018
+# IP Build 2185939 on Wed Apr  4 20:55:05 MDT 2018
+# Start of session at: Fri Jun 29 10:14:35 2018
+# Process ID: 7900
+# Current directory: C:/Users/Kharitonov_AY/WORKSPACE/dac/ad9142/ad9142/ad9142.runs/dac_design_DifferentialOutBuffer_1_0_synth_1
+# Command line: vivado.exe -log dac_design_DifferentialOutBuffer_1_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source dac_design_DifferentialOutBuffer_1_0.tcl
+# Log file: C:/Users/Kharitonov_AY/WORKSPACE/dac/ad9142/ad9142/ad9142.runs/dac_design_DifferentialOutBuffer_1_0_synth_1/dac_design_DifferentialOutBuffer_1_0.vds
+# Journal file: C:/Users/Kharitonov_AY/WORKSPACE/dac/ad9142/ad9142/ad9142.runs/dac_design_DifferentialOutBuffer_1_0_synth_1\vivado.jou
+#-----------------------------------------------------------
+source dac_design_DifferentialOutBuffer_1_0.tcl -notrace

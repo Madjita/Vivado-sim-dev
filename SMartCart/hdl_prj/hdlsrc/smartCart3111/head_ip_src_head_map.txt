@@ -1,0 +1,14 @@
+ --> head_ip_src_head_pkg
+smartCart3111/head/DEMUX --> head_ip_src_DEMUX
+smartCart3111/head/Interface/ColdStart --> head_ip_src_ColdStart
+smartCart3111/head/Interface/ColdStop2 --> head_ip_src_ColdStop2
+smartCart3111/head/Interface/Head2 --> head_ip_src_Head2
+smartCart3111/head/Interface/MUX2 --> head_ip_src_MUX2
+smartCart3111/head/Interface/Swith_signal2 --> head_ip_src_Swith_signal2
+smartCart3111/head/Interface --> head_ip_src_Interface
+smartCart3111/head/MUX --> head_ip_src_MUX
+smartCart3111/head/Manager/signal_edg --> head_ip_src_signal_edg
+smartCart3111/head/Manager --> head_ip_src_Manager
+smartCart3111/head/Reciver --> head_ip_src_Reciver
+smartCart3111/head/switch_io --> head_ip_src_switch_io
+smartCart3111/head --> head_ip_src_head

@@ -1,0 +1,20 @@
+vhdl xil_defaultlib  \
+"../../../bd/dac_design/ipshared/55bf/src/handmadedds_pkg.vhd" \
+"../../../bd/dac_design/ipshared/55bf/src/LookUpTableGen.vhd" \
+"../../../bd/dac_design/ipshared/55bf/src/WaveformGen.vhd" \
+"../../../bd/dac_design/ipshared/55bf/src/NCO_HDL_Optimized.vhd" \
+"../../../bd/dac_design/ipshared/55bf/src/handmadedds_block.vhd" \
+"../../../bd/dac_design/ipshared/55bf/src/handmadedds.vhd" \
+"../../../bd/dac_design/ip/dac_design_handmadedds_0_0/sim/dac_design_handmadedds_0_0.vhd" \
+"../../../bd/dac_design/ipshared/faf6/hdl/DifferentialOutBuffer.vhd" \
+"../../../bd/dac_design/ip/dac_design_DifferentialOutBuffer_0_0/sim/dac_design_DifferentialOutBuffer_0_0.vhd" \
+"../../../bd/dac_design/ip/dac_design_DifferentialOutBuffer_1_0/sim/dac_design_DifferentialOutBuffer_1_0.vhd" \
+"../../../bd/dac_design/ip/dac_design_ila_0_0/sim/dac_design_ila_0_0.vhd" \
+"../../../bd/dac_design/ip/dac_design_DifferentialOutBuffer_2_0/sim/dac_design_DifferentialOutBuffer_2_0.vhd" \
+"../../../bd/dac_design/sim/dac_design.vhd" \
+"../../../bd/dac_design/ip/dac_design_axi_gpio_0_0/sim/dac_design_axi_gpio_0_0.vhd" \
+"../../../bd/dac_design/ip/dac_design_rst_ps7_0_100M_0/sim/dac_design_rst_ps7_0_100M_0.vhd" \
+"../../../bd/dac_design/ipshared/2af1/hdl/tribuffer_v1_0.vhd" \
+"../../../bd/dac_design/ip/dac_design_tribuffer_0_0/sim/dac_design_tribuffer_0_0.vhd" \
+
+nosort

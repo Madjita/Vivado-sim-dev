@@ -1,0 +1,6 @@
+10:45:08 **** Incremental Build of configuration Debug for project smartact_ye ****
+make all 
+make: Цель `all' не требует выполнения команд.
+
+10:45:08 Build Finished (took 78ms)
+

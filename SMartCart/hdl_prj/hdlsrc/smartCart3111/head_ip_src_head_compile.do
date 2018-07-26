@@ -1,0 +1,15 @@
+vlib work
+vcom  head_ip_src_head_pkg.vhd
+vcom  head_ip_src_DEMUX.vhd
+vcom  head_ip_src_ColdStart.vhd
+vcom  head_ip_src_ColdStop2.vhd
+vcom  head_ip_src_Head2.vhd
+vcom  head_ip_src_MUX2.vhd
+vcom  head_ip_src_Swith_signal2.vhd
+vcom  head_ip_src_Interface.vhd
+vcom  head_ip_src_MUX.vhd
+vcom  head_ip_src_signal_edg.vhd
+vcom  head_ip_src_Manager.vhd
+vcom  head_ip_src_Reciver.vhd
+vcom  head_ip_src_switch_io.vhd
+vcom  head_ip_src_head.vhd

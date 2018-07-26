@@ -1,0 +1,75 @@
+/*
+ * smartCard.h
+ *
+ *  Created on: 14 сент. 2016 г.
+ *      Author: Admin
+ */
+
+#ifndef SMARTCARD_H_
+#define SMARTCARD_H_
+/**
+ * @file smartCard Lib
+ * @author Alexey Ts
+ * Library for working with smart cards developed with ISO 7816
+ * */
+
+#include <stdio.h>
+#include "platform.h"
+#include "xparameters.h"
+#include "xil_io.h"
+#include "xscugic.h"
+#include "type_data.h"
+#include "sleep.h"
+#include "xil_types.h"
+#include "xil_exception.h"
+#include "xplatform_info.h"
+#include "xil_exception.h"
+
+//-----------------------------------------XillFunctions------------------------------//
+
+/**объект прерываний SmartCard**/
+typedef ProgSmartCart;
+/**Структура контроллера прерываний**/
+XScuGic InterruptController;
+/**структура для обмена ингформацие с smartCard**/
+cInterfaceSmartcard cinterfacesmartcard;
+/**базовый адрес ip ядра**/
+static int baseaddress=0x400d0000;
+
+/**Обработчик прерываний smartCard**/
+void SetSmartCart();
+/**Обработчик прерывания обнаружения SmartCard**/
+void DetectSmartCart();
+/**Контроллер прерываний (объявление прерываний)**/
+int ScuGicInterrupt_Init(u16 DeviceId,ProgSmartCart *pProgSmartCart);
+/**контроллер прерываний(Инициализация)**/
+int SetUpInterruptSystem(XScuGic *XScuGicInstancePtr);
+/**предварительная настройка работы SmartCard**/
+unsigned intcial(void);
+
+
+//----------------------------SmartCardFunctions-----------------------//
+
+/**Считывает серийный номер карты **/
+unsigned read_serial_number();
+/**Считывает результат самотестирования карты **/
+unsigned test_result();
+/**Считывает случайное число которое выработала **/
+unsigned get_challenge();
+/**Считывает имитовставку Smartcard**/
+unsigned check_rom();
+/**производит первоначальную запись транспортного ключа в масочное ПЗУ**/
+unsigned write_tk_pl();
+/**Создает Мастер файл, переводит карту в режим эксплуатации**/
+unsigned create_mf();
+/**считывает текущую информацию о карте(также получает доп сведенья после опр комманд см.руководство программиста ОС РИК)**/
+unsigned get_response();
+/**Записывает транспортный ключ в ЭСППЗУ(обязательное условия выполнения успешное выполнения функции verify_tk() )**/
+unsigned write_tk();
+/**Производит проверку предоставленного транспортного ключа с тем что записан на карте**/
+unsigned verify_tk(unsigned tk_1, unsigned tk_2, unsigned tk_3, unsigned tk_4, unsigned tk_5, unsigned tk_6, unsigned tk_7, unsigned tk_8);
+/**Тестирует файловую систему**/
+unsigned test_fs();
+
+
+#endif /* SMARTCARD_H_ */

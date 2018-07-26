@@ -1,0 +1,55 @@
+#-----------------------------------------------------------
+# Vivado v2018.1 (64-bit)
+# SW Build 2188600 on Wed Apr  4 18:40:38 MDT 2018
+# IP Build 2185939 on Wed Apr  4 20:55:05 MDT 2018
+# Start of session at: Wed Jul 11 10:28:31 2018
+# Process ID: 3404
+# Current directory: C:/Users/Kharitonov_AY/WORKSPACE/TPGTRTBKS/dac/ad9142/ad9142
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent6988 C:\Users\Kharitonov_AY\WORKSPACE\TPGTRTBKS\dac\ad9142\ad9142\ad9142.xpr
+# Log file: C:/Users/Kharitonov_AY/WORKSPACE/TPGTRTBKS/dac/ad9142/ad9142/vivado.log
+# Journal file: C:/Users/Kharitonov_AY/WORKSPACE/TPGTRTBKS/dac/ad9142/ad9142\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/Kharitonov_AY/WORKSPACE/TPGTRTBKS/dac/ad9142/ad9142/ad9142.xpr
+INFO: [Project 1-313] Project file moved from 'C:/Users/Kharitonov_AY/WORKSPACE/dac/ad9142/ad9142' since last save.
+Scanning sources...
+Finished scanning sources
+INFO: [filemgmt 56-1] IP Repository Path: Directory not found as 'C:/Users/Kharitonov_AY/WORKSPACE/TPGTRTBKS/tsos/ip_repo/tribuffer_1.0'; using path 'C:/Users/Kharitonov_AY/WORKSPACE/tsos/ip_repo/tribuffer_1.0' instead.
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/Kharitonov_AY/WORKSPACE/TPGTRTBKS/dac/ip_repo'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/Kharitonov_AY/WORKSPACE/TPGTRTBKS/adc/ip_repo'.
+INFO: [IP_Flow 19-1700] Loaded user IP repository 'c:/Users/Kharitonov_AY/WORKSPACE/tsos/ip_repo/tribuffer_1.0'.
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/Xilinx/Vivado/2018.1/data/ip'.
+open_project: Time (s): cpu = 00:00:19 ; elapsed = 00:00:19 . Memory (MB): peak = 927.188 ; gain = 200.934
+update_compile_order -fileset sources_1
+open_bd_design {C:/Users/Kharitonov_AY/WORKSPACE/TPGTRTBKS/dac/ad9142/ad9142/ad9142.srcs/sources_1/bd/dac_design/dac_design.bd}
+Adding cell -- xilinx.com:ip:processing_system7:5.5 - processing_system7_0
+Adding cell -- xilinx.com:ip:clk_wiz:6.0 - clk_wiz_0
+Adding cell -- rs.local:user:DifferentialOutBuffer:1.0 - DifferentialOutBuffer_0
+Adding cell -- rs.local:user:DifferentialOutBuffer:1.0 - DifferentialOutBuffer_1
+Adding cell -- xilinx.com:ip:ila:6.2 - ila_0
+INFO: [xilinx.com:ip:ila:6.2-6] /ila_0: Xilinx recommends using the System ILA IP in IP Integrator. The System ILA IP is functionally equivalent to an ILA and offers additional benefits in debugging interfaces both within IP Integrator and the Hardware Manager. Consult the Programming and Debug User Guide UG908 for further details.
+Adding cell -- xilinx.com:ip:xlconstant:1.1 - xlconstant_0
+Adding cell -- rs.local:user:DifferentialOutBuffer:1.0 - DifferentialOutBuffer_2
+Adding cell -- xilinx.com:ip:xlconstant:1.1 - xlconstant_1
+Adding cell -- xilinx.com:ip:xlconstant:1.1 - xlconstant_2
+Adding cell -- rs.local:user:handmadedds:1.0 - handmadedds_0
+Adding cell -- xilinx.com:ip:axi_gpio:2.0 - axi_gpio_0
+Adding cell -- xilinx.com:ip:proc_sys_reset:5.0 - rst_ps7_0_100M
+Adding cell -- rs.local:user:tribuffer:1.0 - tribuffer_0
+WARNING: [BD 41-1731] Type mismatch between connected pins: /DAC_CLKP(clk) and /DifferentialOutBuffer_0/outp(undef)
+WARNING: [BD 41-1731] Type mismatch between connected pins: /DAC_CLKM(clk) and /DifferentialOutBuffer_0/outm(undef)
+WARNING: [BD 41-1731] Type mismatch between connected pins: /DAC_DCIP(clk) and /DifferentialOutBuffer_1/outp(undef)
+WARNING: [BD 41-1731] Type mismatch between connected pins: /DAC_DCIM(clk) and /DifferentialOutBuffer_1/outm(undef)
+WARNING: [BD 41-1731] Type mismatch between connected pins: /SPI_CLK(clk) and /processing_system7_0/SPI0_SCLK_O(undef)
+WARNING: [BD 41-1731] Type mismatch between connected pins: /clk_wiz_0/clk_out2(clk) and /ila_0/probe2(undef)
+WARNING: [BD 41-1731] Type mismatch between connected pins: /clk_wiz_0/clk_out2(clk) and /DifferentialOutBuffer_1/ins(undef)
+WARNING: [BD 41-1731] Type mismatch between connected pins: /clk_wiz_0/clk_out4(clk) and /DifferentialOutBuffer_0/ins(undef)
+Adding cell -- xilinx.com:ip:axi_protocol_converter:2.1 - auto_pc
+Successfully read diagram <dac_design> from BD file <C:/Users/Kharitonov_AY/WORKSPACE/TPGTRTBKS/dac/ad9142/ad9142/ad9142.srcs/sources_1/bd/dac_design/dac_design.bd>
+open_bd_design: Time (s): cpu = 00:00:08 ; elapsed = 00:00:07 . Memory (MB): peak = 1016.289 ; gain = 37.938
+regenerate_bd_layout
+save_bd_design
+Wrote  : <C:/Users/Kharitonov_AY/WORKSPACE/TPGTRTBKS/dac/ad9142/ad9142/ad9142.srcs/sources_1/bd/dac_design/ui/bd_dc19b177.ui> 
+exit
+INFO: [Common 17-206] Exiting Vivado at Wed Jul 11 10:33:08 2018...

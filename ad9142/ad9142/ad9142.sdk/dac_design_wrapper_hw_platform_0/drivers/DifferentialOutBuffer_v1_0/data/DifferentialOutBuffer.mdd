@@ -1,0 +1,10 @@
+
+
+OPTION psf_version = 2.1;
+
+BEGIN DRIVER DifferentialOutBuffer
+	OPTION supported_peripherals = (DifferentialOutBuffer);
+	OPTION copyfiles = all;
+	OPTION VERSION = 1.0;
+	OPTION NAME = DifferentialOutBuffer;
+END DRIVER

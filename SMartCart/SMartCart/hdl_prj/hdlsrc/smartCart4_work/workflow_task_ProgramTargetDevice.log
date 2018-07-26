@@ -1,0 +1,5 @@
+Task "Program Target Device" successful.
+Synthesis tool log: 
+Programming target FPGA device over Ethernet ...
+
+Programming done.

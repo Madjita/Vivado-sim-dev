@@ -1,0 +1,6 @@
+09:18:29 **** Incremental Build of configuration Debug for project smartcart_1 ****
+make all 
+make: Цель `all' не требует выполнения команд.
+
+09:18:29 Build Finished (took 130ms)
+

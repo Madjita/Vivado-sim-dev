@@ -1,0 +1,48 @@
+15:39:18 **** Auto Build of configuration Debug for project test ****
+make all 
+'Building file: ../src/helloworld.c'
+'Invoking: ARM gcc compiler'
+arm-xilinx-eabi-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/helloworld.o" -I../../test_bsp/ps7_cortexa9_0/include -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.d" -o "src/helloworld.o" "../src/helloworld.c"
+../src/helloworld.c: In function 'start':
+../src/helloworld.c:78:5: error: unknown type name 'u32'
+     u32 address;
+     ^
+../src/helloworld.c:79:5: error: unknown type name 'u32'
+     u32 direct;
+     ^
+../src/helloworld.c:82:14: error: 'XPAR_HEAD_IP_0_BASEADDR' undeclared (first use in this function)
+      address=XPAR_HEAD_IP_0_BASEADDR;
+              ^
+../src/helloworld.c:82:14: note: each undeclared identifier is reported only once for each function it appears in
+../src/helloworld.c:83:9: warning: implicit declaration of function 'Xil_Out32' [-Wimplicit-function-declaration]
+         Xil_Out32(XPAR_SWITCH_IO_0_S00_AXI_BASEADDR,5);
+         ^
+../src/helloworld.c:83:19: error: 'XPAR_SWITCH_IO_0_S00_AXI_BASEADDR' undeclared (first use in this function)
+         Xil_Out32(XPAR_SWITCH_IO_0_S00_AXI_BASEADDR,5);
+                   ^
+../src/helloworld.c:87:14: error: 'XPAR_HEAD_IP_1_BASEADDR' undeclared (first use in this function)
+      address=XPAR_HEAD_IP_1_BASEADDR;
+              ^
+../src/helloworld.c:79:9: warning: unused variable 'direct' [-Wunused-variable]
+     u32 direct;
+         ^
+../src/helloworld.c: In function 'main':
+../src/helloworld.c:106:5: warning: implicit declaration of function 'init_platform' [-Wimplicit-function-declaration]
+     init_platform();
+     ^
+../src/helloworld.c:109:5: warning: implicit declaration of function 'intcial' [-Wimplicit-function-declaration]
+     status=intcial(0);//инициализация  начальных настроек смарт карты  №1
+     ^
+../src/helloworld.c:110:22: error: 'cinterfacesmartcard' undeclared (first use in this function)
+     start(&ccomanda,&cinterfacesmartcard,0);// инициализация смарт карты
+                      ^
+../src/helloworld.c:121:5: warning: implicit declaration of function 'cleanup_platform' [-Wimplicit-function-declaration]
+     cleanup_platform();
+     ^
+../src/helloworld.c:107:9: warning: variable 'status' set but not used [-Wunused-but-set-variable]
+     int status =0;
+         ^
+make: *** [src/helloworld.o] Ошибка 1
+
+15:39:18 Build Finished (took 239ms)
+

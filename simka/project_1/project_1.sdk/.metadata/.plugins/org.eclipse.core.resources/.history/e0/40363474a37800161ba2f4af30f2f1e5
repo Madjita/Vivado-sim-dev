@@ -1,0 +1,495 @@
+/******************************************************************************
+*
+* Copyright (C) 2009 - 2014 Xilinx, Inc.  All rights reserved.
+*
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+*
+* The above copyright notice and this permission notice shall be included in
+* all copies or substantial portions of the Software.
+*
+* Use of the Software is limited solely to applications:
+* (a) running on a Xilinx device, or
+* (b) that interact with a Xilinx device through a bus or interconnect.
+*
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+* XILINX  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+* WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF
+* OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+* SOFTWARE.
+*
+* Except as contained in this notice, the name of the Xilinx shall not be used
+* in advertising or otherwise to promote the sale, use or other dealings in
+* this Software without prior written authorization from Xilinx.
+*
+******************************************************************************/
+
+/*
+ * helloworld.c: simple test application
+ *
+ * This application configures UART 16550 to baud rate 9600.
+ * PS7 UART (Zynq) is not initialized by this application, since
+ * bootrom/bsp configures it to baud rate 115200
+ *
+ * ------------------------------------------------
+ * | UART TYPE   BAUD RATE                        |
+ * ------------------------------------------------
+ *   uartns550   9600
+ *   uartlite    Configurable only in HW design
+ *   ps7_uart    115200 (configured by bootrom/bsp)
+ */
+
+#include <stdio.h>
+#include "platform.h"
+#include "xparameters.h"
+#include "xil_io.h"
+#include "xscugic.h"
+#include "type_data.h"
+#include "sleep.h"
+#include "xil_types.h"
+#include "xil_exception.h"
+#include "xplatform_info.h"
+#include "xil_exception.h"
+
+
+
+typedef ProgSmartCart;
+XScuGic InterruptController;
+cInterfaceSmartcard cinterfacesmartcard;
+
+
+void SetSmartCart();
+unsigned read_serial_number();
+unsigned Test_Result();
+int ScuGicInterrupt_Init(u16 DeviceId,ProgSmartCart *pProgSmartCart);
+int SetUpInterruptSystem(XScuGic *XScuGicInstancePtr);
+
+//-----------------------------------------------------
+void rst_interrypt(void);
+unsigned intcial(void);
+//-----------------------------------------------------
+int baseaddr=0x400d0000;//базовый адрес ip ядра
+
+
+
+void SetSmartCart()
+{
+	int status;
+	Ccomanda ccomanda;
+	status=Xil_In32(baseaddr+0x238);// тип прерывания
+	if(status==1)//приёмник
+	{
+			cinterfacesmartcard.reciver_buffer[cinterfacesmartcard.index_rec_buff]=Xil_In32(XPAR_HEAD_IP_0_BASEADDR+0x208);
+			Xil_Out32(XPAR_HEAD_IP_0_BASEADDR+0x100, 4101);
+		    Xil_Out32(XPAR_HEAD_IP_0_BASEADDR+0x100, 131077);
+			invert_byte(&cinterfacesmartcard.reciver_buffer[cinterfacesmartcard.index_rec_buff]);
+			cinterfacesmartcard.index_rec_buff++;
+	}
+	if(status==2)//передатчик
+	{
+		Xil_Out32(baseaddr+0x100, 4101);
+		Xil_Out32(XPAR_HEAD_IP_0_BASEADDR+0x100, 131077);
+		return;
+	}
+	if(status==3)// окончание приёма, сброс
+	{
+		Xil_Out32(XPAR_HEAD_IP_0_BASEADDR+0x100, 4101);
+		Xil_Out32(baseaddr+0x228,50000000);// установка ожидание окончания 1 сек
+		cinterfacesmartcard.number_read_byte=cinterfacesmartcard.index_rec_buff;
+		cinterfacesmartcard.index_rec_buff=0;
+		cinterfacesmartcard.initcil=0;
+		cinterfacesmartcard.ok=1;
+		return;
+	}
+
+}
+
+
+unsigned intcial(void)
+{
+	int statusReg;
+	ProgSmartCart pProgSmartCart;
+	statusReg=ScuGicInterrupt_Init(0,&pProgSmartCart);
+	clean_cInterfaceSmartcard(&cinterfacesmartcard);// обнуление структуры cInterfaceSmartcard
+	Xil_Out32(baseaddr+0x4,0x1);// вкл линию io на приём
+	Xil_Out32(baseaddr+0x100,0x4);// вкл ip ядро
+	Xil_Out32(baseaddr+0x228,250000000);// время обноружения конца передачи 1 сек, 1 ед = 1/500000000 сек
+	Xil_Out32(baseaddr+0x230,2604);// длительность половины бита данных, вычисляется как, 3,57e6/((Fi/di)*2)
+	Xil_Out32(baseaddr+0x22C, 5208);// длительность бита данных, вычисляется как, 3,57e6/((Fi/di))
+	Xil_Out32(baseaddr+0x234,5208*2-100);//длительность меж байтной паузы  данных, вычисляется как, (2*3,57e6)/((Fi/di)-100)
+	Xil_Out32(baseaddr+0x204,130);// длительность переходного процесса 1 ед = 1/500000000 сек
+	return statusReg;
+}
+
+
+unsigned  read_serial_number()// функция запроса серийного номера
+{
+	int serial_number;
+	Ccomanda ccomanda;
+	char byt[4];
+	unsigned *qwd_byt;
+	qwd_byt=(unsigned*)(byt);
+	cinterfacesmartcard.transmit_buffer[0]=0x80;
+	cinterfacesmartcard.transmit_buffer[1]=0xCA;
+	cinterfacesmartcard.transmit_buffer[2]=0x00;
+	cinterfacesmartcard.transmit_buffer[3]=0x00;
+	cinterfacesmartcard.transmit_buffer[4]=0x04;
+	write_byte(&ccomanda,5,&cinterfacesmartcard);
+	while(cinterfacesmartcard.ok==0){}
+	cinterfacesmartcard.ok=0;
+	byt[0]=cinterfacesmartcard.reciver_buffer[1];
+	byt[1]=cinterfacesmartcard.reciver_buffer[2];
+	byt[2]=cinterfacesmartcard.reciver_buffer[3];
+	byt[3]=cinterfacesmartcard.reciver_buffer[4];
+	serial_number=*qwd_byt;
+	return serial_number;
+}
+
+
+unsigned Test_Result()// функция запроса теста системы
+{
+	unsigned somo_test;
+	Ccomanda ccomanda;
+	char byt[4];
+	unsigned *qwd_byt;
+	qwd_byt=(unsigned*)(byt);
+	cinterfacesmartcard.transmit_buffer[0]=0x80; //передаем класс команды
+	cinterfacesmartcard.transmit_buffer[1]=0x38; //передаем номер инстртукции
+	cinterfacesmartcard.transmit_buffer[2]=0x00; //ар
+	cinterfacesmartcard.transmit_buffer[3]=0x00; //гу
+	cinterfacesmartcard.transmit_buffer[4]=0x03; //менты
+	write_byte(&ccomanda,5,&cinterfacesmartcard);
+	while(cinterfacesmartcard.ok==0){}
+	cinterfacesmartcard.ok=0;
+	byt[0]=cinterfacesmartcard.reciver_buffer[1]; //
+	byt[1]=cinterfacesmartcard.reciver_buffer[2]; //
+	byt[2]=cinterfacesmartcard.reciver_buffer[3]; //
+	somo_test=*qwd_byt;
+	return somo_test;
+}
+
+unsigned get_CHALLENGE()
+{
+	int somo_test;
+		Ccomanda ccomanda;
+		char byt[4];
+		unsigned *qwd_byt;
+		qwd_byt=(unsigned*)(byt);
+		cinterfacesmartcard.transmit_buffer[0]=0x00; //передаем класс команды
+		cinterfacesmartcard.transmit_buffer[1]=0x84; //передаем номер инстртукции
+		cinterfacesmartcard.transmit_buffer[2]=0x00; //ар
+		cinterfacesmartcard.transmit_buffer[3]=0x00; //
+		cinterfacesmartcard.transmit_buffer[4]=0x00; //
+		cinterfacesmartcard.transmit_buffer[5]=0x00;//Le
+		cinterfacesmartcard.transmit_buffer[6]=0x00;
+		write_byte(&ccomanda,5,&cinterfacesmartcard);
+		while(cinterfacesmartcard.ok==0){}
+		cinterfacesmartcard.ok=0;
+		byt[0]=cinterfacesmartcard.reciver_buffer[1]; //
+		byt[1]=cinterfacesmartcard.reciver_buffer[2]; //
+		byt[2]=cinterfacesmartcard.reciver_buffer[3]; //
+		byt[3]=0; //
+		somo_test=*qwd_byt;
+		return somo_test;
+}
+
+unsigned check_rom()
+{
+	int somo_test;
+		Ccomanda ccomanda;
+		char byt[4];
+		unsigned *qwd_byt;
+		qwd_byt=(unsigned*)(byt);
+		cinterfacesmartcard.transmit_buffer[0]=0x80; //передаем класс команды
+		cinterfacesmartcard.transmit_buffer[1]=0x52; //передаем номер инстртукции
+		cinterfacesmartcard.transmit_buffer[2]=0x00; //ар
+		cinterfacesmartcard.transmit_buffer[3]=0x00;
+		cinterfacesmartcard.transmit_buffer[4]=0x20;
+		cinterfacesmartcard.transmit_buffer[5]=0x00;
+		cinterfacesmartcard.transmit_buffer[6]=0x00;
+		cinterfacesmartcard.transmit_buffer[7]=0x00;
+		cinterfacesmartcard.transmit_buffer[8]=0x00;
+		cinterfacesmartcard.transmit_buffer[9]=0x00;
+		cinterfacesmartcard.transmit_buffer[10]=0x00;
+		cinterfacesmartcard.transmit_buffer[11]=0x00;
+		cinterfacesmartcard.transmit_buffer[12]=0x00;
+		cinterfacesmartcard.transmit_buffer[13]=0x00;
+		cinterfacesmartcard.transmit_buffer[14]=0x00;
+		cinterfacesmartcard.transmit_buffer[15]=0x00;
+		cinterfacesmartcard.transmit_buffer[16]=0x00;
+		cinterfacesmartcard.transmit_buffer[17]=0x00;
+		cinterfacesmartcard.transmit_buffer[18]=0x00;
+		cinterfacesmartcard.transmit_buffer[19]=0x00;
+		cinterfacesmartcard.transmit_buffer[20]=0x00;
+		cinterfacesmartcard.transmit_buffer[21]=0x00;
+		cinterfacesmartcard.transmit_buffer[22]=0x00;
+		cinterfacesmartcard.transmit_buffer[23]=0x00;
+		cinterfacesmartcard.transmit_buffer[24]=0x00;
+		cinterfacesmartcard.transmit_buffer[25]=0x04;
+
+		write_byte(&ccomanda,26,&cinterfacesmartcard);
+		while(cinterfacesmartcard.ok==0){}
+		cinterfacesmartcard.ok=0;
+		byt[0]=cinterfacesmartcard.reciver_buffer[1]; //
+		byt[1]=cinterfacesmartcard.reciver_buffer[2]; //
+		byt[2]=cinterfacesmartcard.reciver_buffer[3]; //
+		byt[3]=0; //
+		somo_test=*qwd_byt;
+		return somo_test;
+}
+
+unsigned writeTK_PL()
+{
+
+	int somo_test;
+	Ccomanda ccomanda;
+	char byt[4];
+	unsigned *qwd_byt;
+	qwd_byt=(unsigned*)(byt);
+	cinterfacesmartcard.transmit_buffer[0]=0xFF; //передаем класс команды
+	cinterfacesmartcard.transmit_buffer[1]=0x3A; //передаем номер инстртукции
+	cinterfacesmartcard.transmit_buffer[2]=0x00; //ар
+	cinterfacesmartcard.transmit_buffer[3]=0x00; //гу
+	cinterfacesmartcard.transmit_buffer[4]=0x08; //менты
+    cinterfacesmartcard.transmit_buffer[5]=0x00;
+	cinterfacesmartcard.transmit_buffer[6]=0x00;
+	cinterfacesmartcard.transmit_buffer[7]=0x00;
+	cinterfacesmartcard.transmit_buffer[8]=0x00;
+	cinterfacesmartcard.transmit_buffer[9]=0x00;
+	cinterfacesmartcard.transmit_buffer[10]=0x00;
+	cinterfacesmartcard.transmit_buffer[11]=0x00;
+	cinterfacesmartcard.transmit_buffer[12]=0x00;
+	write_byte(&ccomanda,13,&cinterfacesmartcard);
+	while(cinterfacesmartcard.ok==0){}
+	cinterfacesmartcard.ok=0;
+	byt[0]=cinterfacesmartcard.reciver_buffer[1]; //
+	byt[1]=cinterfacesmartcard.reciver_buffer[2]; //
+	byt[2]=cinterfacesmartcard.reciver_buffer[3]; //
+	byt[3]=0; //
+	somo_test=*qwd_byt;
+	return somo_test;
+}
+
+unsigned create_MF()
+{
+	int somo_test;
+	Ccomanda ccomanda;
+	char byt[4];
+	unsigned *qwd_byt;
+	qwd_byt=(unsigned*)(byt);
+	cinterfacesmartcard.transmit_buffer[0]=0x80; //передаем класс команды
+	cinterfacesmartcard.transmit_buffer[1]=0x30; //передаем номер инстртукции
+	cinterfacesmartcard.transmit_buffer[2]=0x00; //ар
+	cinterfacesmartcard.transmit_buffer[3]=0x00; //гу
+	cinterfacesmartcard.transmit_buffer[4]=0x09; //менты
+	cinterfacesmartcard.transmit_buffer[5]=0x00;
+	cinterfacesmartcard.transmit_buffer[6]=0xFF;
+	cinterfacesmartcard.transmit_buffer[7]=0xF0;
+	cinterfacesmartcard.transmit_buffer[8]=0x00;
+	cinterfacesmartcard.transmit_buffer[9]=0x00;
+	cinterfacesmartcard.transmit_buffer[10]=0x00;
+	cinterfacesmartcard.transmit_buffer[11]=0x00;
+	cinterfacesmartcard.transmit_buffer[12]=0x00;
+	cinterfacesmartcard.transmit_buffer[13]=0x00;
+	write_byte(&ccomanda,5,&cinterfacesmartcard);
+	while(cinterfacesmartcard.ok==0){}
+	cinterfacesmartcard.ok=0;
+	byt[0]=cinterfacesmartcard.reciver_buffer[1]; //
+	byt[1]=cinterfacesmartcard.reciver_buffer[2]; //
+	byt[2]=cinterfacesmartcard.reciver_buffer[3]; //
+	byt[3]=0; //
+	somo_test=*qwd_byt;
+	return somo_test;
+}
+
+unsigned get_Response()
+{
+	int somo_test;
+	Ccomanda ccomanda;
+	char byt[4];
+	unsigned *qwd_byt;
+	qwd_byt=(unsigned*)(byt);
+	cinterfacesmartcard.transmit_buffer[0]=0x80; //передаем класс команды
+	cinterfacesmartcard.transmit_buffer[1]=0xC0; //передаем номер инстртукции
+	cinterfacesmartcard.transmit_buffer[2]=0x00; //ар
+	cinterfacesmartcard.transmit_buffer[3]=0x00; //гу
+	cinterfacesmartcard.transmit_buffer[4]=0xFA; //менты
+
+	write_byte(&ccomanda,5,&cinterfacesmartcard);
+	while(cinterfacesmartcard.ok==0){}
+	cinterfacesmartcard.ok=0;
+	byt[0]=cinterfacesmartcard.reciver_buffer[1]; //
+	byt[1]=cinterfacesmartcard.reciver_buffer[2]; //
+	byt[2]=cinterfacesmartcard.reciver_buffer[3]; //
+	byt[3]=0; //
+	somo_test=*qwd_byt;
+	return somo_test;
+}
+unsigned writeTK_ESPZU()
+{
+	int somo_test;
+	Ccomanda ccomanda;
+	char byt[4];
+	unsigned *qwd_byt;
+	qwd_byt=(unsigned*)(byt);
+	cinterfacesmartcard.transmit_buffer[0]=0x80; //передаем класс команды
+	cinterfacesmartcard.transmit_buffer[1]=0x36; //передаем номер инстртукции
+	cinterfacesmartcard.transmit_buffer[2]=0x00; //ар
+	cinterfacesmartcard.transmit_buffer[3]=0x00; //гу
+	cinterfacesmartcard.transmit_buffer[4]=0x08; //менты
+	cinterfacesmartcard.transmit_buffer[5]=0xab;//0xAB;
+	cinterfacesmartcard.transmit_buffer[6]=0x49;//0x49;
+	cinterfacesmartcard.transmit_buffer[7]=0xb8;//0xB8;
+	cinterfacesmartcard.transmit_buffer[8]=0xfb;//0xF7;
+	cinterfacesmartcard.transmit_buffer[9]=0xab;//0xAB;
+	cinterfacesmartcard.transmit_buffer[10]=0x49;//0x49;
+	cinterfacesmartcard.transmit_buffer[11]=0xb8;//0xB8;
+	cinterfacesmartcard.transmit_buffer[12]=0xfb;//0xF7;
+	write_byte(&ccomanda,13,&cinterfacesmartcard);
+	while(cinterfacesmartcard.ok==0){}
+	cinterfacesmartcard.ok=0;
+	byt[0]=cinterfacesmartcard.reciver_buffer[1]; //
+	byt[1]=cinterfacesmartcard.reciver_buffer[2]; //
+	byt[2]=cinterfacesmartcard.reciver_buffer[3]; //
+	byt[3]=0; //
+	somo_test=*qwd_byt;
+	return somo_test;
+}
+
+unsigned verifyTK(unsigned tk_1, unsigned tk_2, unsigned tk_3, unsigned tk_4, unsigned tk_5, unsigned tk_6, unsigned tk_7, unsigned tk_8)
+{
+	int somo_test;
+	Ccomanda ccomanda;
+	char byt[4];
+	unsigned *qwd_byt;
+	qwd_byt=(unsigned*)(byt);
+	cinterfacesmartcard.transmit_buffer[0]=0x80; //передаем класс команды
+	cinterfacesmartcard.transmit_buffer[1]=0x3E; //передаем номер инстртукции
+	cinterfacesmartcard.transmit_buffer[2]=0x00; //ар
+	cinterfacesmartcard.transmit_buffer[3]=0x00; //гу
+	cinterfacesmartcard.transmit_buffer[4]=0x08; //менты
+	cinterfacesmartcard.transmit_buffer[5]=0x21;
+	cinterfacesmartcard.transmit_buffer[6]=0x21;
+	cinterfacesmartcard.transmit_buffer[7]=0x21;
+	cinterfacesmartcard.transmit_buffer[8]=0x21;
+	cinterfacesmartcard.transmit_buffer[9]=0x21;
+	cinterfacesmartcard.transmit_buffer[10]=0x21;
+	cinterfacesmartcard.transmit_buffer[11]=0x21;
+	cinterfacesmartcard.transmit_buffer[12]=0x21;
+	write_byte(&ccomanda,5,&cinterfacesmartcard);
+	while(cinterfacesmartcard.ok==0){}
+	cinterfacesmartcard.ok=0;
+	byt[0]=cinterfacesmartcard.reciver_buffer[1]; //
+	byt[1]=cinterfacesmartcard.reciver_buffer[2]; //
+	byt[2]=cinterfacesmartcard.reciver_buffer[3]; //
+	byt[3]=0; //
+	somo_test=*qwd_byt;
+	return somo_test;
+}
+
+unsigned testFS()
+{
+	int somo_test;
+	Ccomanda ccomanda;
+	char byt[4];
+	unsigned *qwd_byt;
+	qwd_byt=(unsigned*)(byt);
+	cinterfacesmartcard.transmit_buffer[0]=0x80; //передаем класс команды
+	cinterfacesmartcard.transmit_buffer[1]=0xF0; //передаем номер инстртукции
+	cinterfacesmartcard.transmit_buffer[2]=0x00; //ар
+	cinterfacesmartcard.transmit_buffer[3]=0x00; //гу
+	cinterfacesmartcard.transmit_buffer[4]=0x04; //менты
+	write_byte(&ccomanda,5,&cinterfacesmartcard);
+	while(cinterfacesmartcard.ok==0){}
+	cinterfacesmartcard.ok=0;
+	byt[0]=cinterfacesmartcard.reciver_buffer[1]; //
+	byt[1]=cinterfacesmartcard.reciver_buffer[2]; //
+	byt[2]=cinterfacesmartcard.reciver_buffer[3]; //
+	byt[3]=0; //
+	somo_test=*qwd_byt;
+	return somo_test;
+}
+
+int main()
+{
+
+
+    init_platform();
+    int a,status,i;
+    unsigned serial_numer;
+    int somo_test,err;
+    Ccomanda ccomanda;
+    status=intcial();//инициализация  начальных настроек смарт карты
+
+    start(&ccomanda,&cinterfacesmartcard);// инициализация смарт карты
+
+    while(cinterfacesmartcard.ok==0){}// ожидание окончания инициализации
+    cinterfacesmartcard.ok=0;
+   // serial_numer=read_serial_number();// считываение серийного номера смарт карты
+   // somo_test=Test_Result();// считывание состояния системы
+   // verifyTK();
+   // writeTK_ESPZU();
+   // writeTK_ESPZU();
+    //writeTK_PL();
+  //  verifyTK();
+   // writeTK_ESPZU();
+   // get_Response();
+    verifyTK();
+    writeTK_ESPZU();
+    printf("CardSelf TEst: \n");
+    printf("%d\n",somo_test);
+    printf("card serial num: \n");
+    printf("%d\n",serial_numer);
+    // деинициализация смарт карты
+    while(1)
+    {
+    	a++;
+    }
+    cleanup_platform();
+    return 0;
+}
+
+int SetUpInterruptSystem(XScuGic *XScuGicInstancePtr) //инициализация контроллера прерываний
+{
+	Xil_ExceptionRegisterHandler(XIL_EXCEPTION_ID_INT,
+	(Xil_ExceptionHandler) XScuGic_InterruptHandler,
+	XScuGicInstancePtr);
+	Xil_ExceptionEnable();
+	return XST_SUCCESS;
+}
+
+
+int ScuGicInterrupt_Init(u16 DeviceId,ProgSmartCart *pProgSmartCart) //функция инициализации прерывания № 61
+{
+	int Status;
+	XScuGic_Config *GicConfig;
+	GicConfig = XScuGic_LookupConfig(DeviceId);
+	if (NULL == GicConfig) {
+	return XST_FAILURE;
+	}
+	Status = XScuGic_CfgInitialize(&InterruptController, GicConfig, GicConfig->CpuBaseAddress);
+	if (Status != XST_SUCCESS) {
+	return XST_FAILURE;
+	}
+	Status = SetUpInterruptSystem(&InterruptController);
+	if (Status != XST_SUCCESS) {
+	return XST_FAILURE;
+	}
+	//---схема управления
+	Status = XScuGic_Connect(&InterruptController,61,SetSmartCart,pProgSmartCart);
+	if (Status != XST_SUCCESS)
+	{
+		return XST_FAILURE;
+	}
+	XScuGic_Enable(&InterruptController, 61);
+ 	return XST_SUCCESS;
+
+}
+
+

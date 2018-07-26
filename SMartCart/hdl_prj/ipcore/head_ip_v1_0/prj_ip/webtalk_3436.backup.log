@@ -1,0 +1,15 @@
+#-----------------------------------------------------------
+# Webtalk v2015.2 (64-bit)
+# SW Build 1266856 on Fri Jun 26 16:35:25 MDT 2015
+# IP Build 1264090 on Wed Jun 24 14:22:01 MDT 2015
+# Start of session at: Mon Jul 11 16:29:08 2016
+# Process ID: 2696
+# Log file: D:/Matlab_Vhd/hdl_prj/ipcore/head_ip_v1_0/prj_ip/webtalk.log
+# Journal file: D:/Matlab_Vhd/hdl_prj/ipcore/head_ip_v1_0/prj_ip\webtalk.jou
+#-----------------------------------------------------------
+source D:/Matlab_Vhd/hdl_prj/ipcore/head_ip_v1_0/prj_ip/prj_ip.hw/webtalk/labtool_webtalk.tcl -notrace
+
+    while executing
+"webtalk_transmit -clientid 1337665793 -regid "210848788_0_0_429" -xml D:/Matlab_Vhd/hdl_prj/ipcore/head_ip_v1_0/prj_ip/prj_ip.hw/webtalk/usage_statist..."
+    (file "D:/Matlab_Vhd/hdl_prj/ipcore/head_ip_v1_0/prj_ip/prj_ip.hw/webtalk/labtool_webtalk.tcl" line 26)
+INFO: [Common 17-206] Exiting Webtalk at Mon Jul 11 16:29:09 2016...

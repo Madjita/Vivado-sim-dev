@@ -1,0 +1,10 @@
+smartCart3/head/Interface/ColdStart --> head_ip_src_ColdStart
+smartCart3/head/Interface/ColdStop2 --> head_ip_src_ColdStop2
+smartCart3/head/Interface/Head2 --> head_ip_src_Head2
+smartCart3/head/Interface/MUX2 --> head_ip_src_MUX2
+smartCart3/head/Interface/Swith_signal2 --> head_ip_src_Swith_signal2
+smartCart3/head/Interface --> head_ip_src_Interface
+smartCart3/head/Reciver/SinglePortRAM_Wrapper_32x8b/SinglePortRAM_32x8b --> head_ip_src_SinglePortRAM_32x8b
+smartCart3/head/Reciver/SinglePortRAM_Wrapper_32x8b --> head_ip_src_SinglePortRAM_Wrapper_32x8b
+smartCart3/head/Reciver --> head_ip_src_Reciver
+smartCart3/head --> head_ip_src_head

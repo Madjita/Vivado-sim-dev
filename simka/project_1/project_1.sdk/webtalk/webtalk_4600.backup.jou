@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Webtalk v2015.4 (64-bit)
+# SW Build 1412921 on Wed Nov 18 09:43:45 MST 2015
+# 
+# Start of session at: Mon Nov 20 13:25:35 2017
+# Process ID: 4600
+# Current directory: E:/simka/project_1/project_1.sdk/webtalk
+# Command line: wbtcv.exe -mode batch -source sdk_webtalk.tcl
+# Log file: E:/simka/project_1/project_1.sdk/webtalk/webtalk.log
+# Journal file: E:/simka/project_1/project_1.sdk/webtalk\webtalk.jou
+#-----------------------------------------------------------
+source sdk_webtalk.tcl
